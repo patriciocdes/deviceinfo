@@ -33,6 +33,8 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
         String item = items.get(position);
         holder.txtAppInfo.setText(item);
 
+
+        // Configuração para alterar a cor da lista da recyclerview
         if (position % 2 == 0) {
             holder.itemView.setBackgroundColor(Color.parseColor("#F0F0F0"));
         } else {

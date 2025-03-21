@@ -100,11 +100,13 @@ public class MainActivity extends AppCompatActivity {
 
         super.onDestroy();
 
+        // Removendo a view de brilho para evitar retenção de memória
         if (screenBrightnessOverlayView != null) {
             windowManager.removeView(screenBrightnessOverlayView);
             screenBrightnessOverlayView = null;
         }
 
+        // Liberando recursos
         activityManager = null;
         windowManager = null;
 
@@ -138,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void configScreenBrightness(float value) {
+        // É exigido que o usuário libere o uso do recurso
         if (!Settings.canDrawOverlays(this)) {
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                     Uri.parse("package:" + getPackageName()));
@@ -149,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setScreenBrightness(float value) {
+        // Configuração da view que será utilizada para aplicar o brilho
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.MATCH_PARENT,
